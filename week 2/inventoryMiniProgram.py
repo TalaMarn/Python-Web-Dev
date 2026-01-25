@@ -1,3 +1,5 @@
+
+
 Inventory = []
 # product 1
 product1 = {}
