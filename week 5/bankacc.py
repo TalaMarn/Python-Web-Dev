@@ -58,3 +58,8 @@ CurrentAcc.withdraw(-500)
 ### class GrandChild(Child):
 ###    pass
 # 4. Hierarchical Inheritence => one parent -> multiple child 
+
+class Child(BankAcc):
+    def withdraw(self, amount):
+        print("Child withdraw logic starts")
+        super.withdraw(amount)  # Call the parent class's withdraw method
