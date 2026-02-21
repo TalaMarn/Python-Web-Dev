@@ -14,4 +14,4 @@ class dog(animal):
         print("The dog is barking")
 
 dog = dog()
-dog.speak()
+dog.speak() 
