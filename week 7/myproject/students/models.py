@@ -7,5 +7,5 @@ class Student(models.Model):
     email = models.EmailField()
     course = models.CharField(max_length=100)
 
-def __str__(self):
-    return self.name
+    def __str__(self):
+        return self.name
