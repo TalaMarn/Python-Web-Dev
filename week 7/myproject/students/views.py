@@ -4,6 +4,8 @@ from django.core.paginator import Paginator
 from .forms import StudentForm
 
 # Create your views here.
+def welcome(request):
+    return render(request, 'welcome.html')
 def student_list(request):
     query = request.GET.get('q')
     if query:
