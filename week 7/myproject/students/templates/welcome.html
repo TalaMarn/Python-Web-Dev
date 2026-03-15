@@ -33,8 +33,98 @@
             <a href="{% url 'dashboard' %}" class="cta-btn">Go to Dashboard</a>
         </div>
         <div class="hero-image col-md-6 text-center">
-            <img src="{% static 'images/student.jpg' %}" class="img-fluid" alt="student hero">
+            <img src="{% static 'images/student.jpg' %}" class="img-fluid" alt="Student Hero">
         </div>
     </section>
-</body> 
+    <!-- Features Section -->
+    <section class="features-section container">
+        <div class="row text-center g-4">
+            <div class="col-md-3">
+                <div class="card feature-card p-4 shadow-sm">
+                    <i class="bi bi-person-lines-fill"></i>
+                    <h5>Students</h5>
+                    <p>Track all student information and attendance records easily.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card feature-card p-4 shadow-sm">
+                    <i class="bi bi-journal-bookmark-fill"></i>
+                    <h5>Courses</h5>
+                    <p>Create and manage courses with complete details and schedules.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card feature-card p-4 shadow-sm">
+                    <i class="bi bi-person-badge-fill"></i>
+                    <h5>Teachers</h5>
+                    <p>Manage teacher profiles, courses, and assignments efficiently.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card feature-card p-4 shadow-sm">
+                    <i class="bi bi-card-checklist"></i>
+                    <h5>Enrollment</h5>
+                    <p>Handle student course enrollments and track progress easily.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Education Blog Section-->
+    <section class="container mt-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Education Insights</h2>
+            <p class="text_muted">Learn about the history of education, famous educators, and Myanmar's education background.</p>    
+        </div>
+        <!--Education Background-->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-150 border-0">
+                <img src="{%  static 'images/history_education.jpg' %}" class="card-img-top" alt="History of Education">
+                <div class="card-body">
+                    <h5 class="card-title"> History of Education</h5>
+                    <p class="card-text">
+                        Education has evolved from ancient oral traditions to modern digital learning. 
+                        Early civilizations like Greece, China, and India built the foundations of formal education systems.
+                    </p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                </div>
+            </div>
+        </div>
+        <!-- Famous Educators -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-150 border-0">
+                <img src="{% static 'images/famouse_educators.webp' %}" class="card-img-top" alt="Famous Educators">
+                <div class="card-body">
+                    <h5 class="card-title">Famous Educators</h5>
+                    <p class="card-text">
+                        Influential figures like Confucius, Maria Montessori, and John Dewey shaped modern education systems 
+                        and teaching philosophies used worldwide today.
+                    </p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                </div>
+            </div>
+        </div>
+         <!-- Myanmar Education -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-70 border-0">
+                <img src="{% static 'images/myanmar_education.png' %}" class="card-img-top" alt="Myanmar Education">
+                <div class="card-body">
+                    <h5 class="card-title">Myanmar Education</h5>
+                    <p class="card-text">
+                        Myanmar’s education system started with monastic schools where monks taught literacy and moral values. 
+                        Today the system includes primary, secondary, and university education.
+                    </p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <!--Footer-->
+    <footer class="text-center">
+        <div class="container">
+            <p>&copy; 2026 Student Management System. All rights reversed.</p>
+            <p>Contact: <a href="mailto:admin@students.com">admin@studentms.com</a></p>
+        </div>
+    </footer>
+    </body>
 </html>
