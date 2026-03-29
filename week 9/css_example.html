@@ -1,0 +1,53 @@
+css -> Cascading Style Sheets => used to design and style html elements
+
+color, layout, spacing, fonts, animations.
+
+selector {
+    property: value;
+}
+
+p {
+    color: red;
+    font-size: 16px;
+}
+
+1. Inline CSS -> <p style="color: red; font-size: 16px;">This is a paragraph.</p>
+2. Internal CSS ->
+<style>
+    p {
+        color: red;
+        font-size: 16px;
+    }
+</style>
+<p>This is a paragraph.</p>
+
+3. External CSS ->
+<link rel="stylesheet" href="style.css">
+
+common selectors
+    1. Element Selector -> 
+    h1 { 
+        color: red;
+    }
+    2. Class Selector -> 
+    .my-class { 
+        color: blue; 
+    }
+    3. ID Selector ->
+    #my-id { 
+        color: green; 
+    }
+
+colors
+color: red;
+color: #ff0000;
+color: rgb(255, 0, 0);
+color: rgba(255, 0, 0, 0.5);
+
+Box Model
+
+div {
+    margin: 10px; /* space outside the border */
+    padding: 5px; /* space inside the border */
+    border: 1px solid black; /* border around the element */
+}
