@@ -1,5 +1,9 @@
 import psycopg2
+import subprocess
+import os
 
+def clear_screen():
+    subprocess.run('cls' if os.name == 'nt' else ['clear'], shell=True)
 
 def connect_to_db():
     try:
@@ -9,7 +13,6 @@ def connect_to_db():
             user="postgres",
             password="9102004"
         )
-        print("Connection to the database was successful!")
         return connection
     except Exception as e:
         print(f"An error occurred while connecting to the database: {e}")
@@ -66,6 +69,7 @@ class User:
         self._role = role
 
     def register(self):
+        clear_screen()
         print("Which type of user do you want to register?")
         print("1. Passenger")
         print("2. Driver")
@@ -103,7 +107,7 @@ class User:
             print("Registration successful!")
 
     def Login(self, username, password, role):
-
+        clear_screen()
         conn = connect_to_db()
         if conn:
             cursor = conn.cursor()
@@ -150,11 +154,14 @@ class Driver(User):
             cursor.close()
             conn.close()
             if orders:
+                print("=========================================")
                 print("Your Orders:")
                 for order in orders:
                     print(f"Order ID: {order[0]}, Passenger: {order[1]}, Pickup: {order[2]}, Dropoff: {order[3]}, Distance: {order[4]}, Fare: {order[5]}")
             else:
                 print("You have no orders at the moment.")
+            input("Press Enter to continue...")
+            clear_screen()
         else:
             print("Failed to connect to the database. Please try again.")
 
@@ -196,6 +203,7 @@ class Passenger(User):
             cursor.close()
             conn.close()
             if drivers:
+                print("=========================================")
                 print("Available Drivers:")
                 for driver in drivers:
                     print(f"Driver ID: {driver[0]}, Username: {driver[1]}, Car Model: {driver[2]}, Per Km Fee: {driver[3]}")
@@ -231,6 +239,8 @@ class Passenger(User):
                 cursor.execute("INSERT INTO orders (passenger_id, pickup_location, dropoff_location, distance, driver_id, fare, status) VALUES (%s, %s, %s, %s, %s, %s, 'Pending')", (passenger_id, pickup_location, dropoff_location, distance, driver_id, fare))
                 conn.commit()
                 print("Ride booked successfully!")
+                input("Press Enter to continue...")
+                clear_screen()
             else:
                 print("Driver not found.")
             cursor.close()
@@ -252,6 +262,8 @@ class Passenger(User):
                 cursor.execute("UPDATE orders SET status = 'Cancelled' WHERE id = %s AND passenger_username = %s", (order_id, self.username))
                 conn.commit()
                 print("Ride canceled successfully!")
+                input("Press Enter to continue...")
+                clear_screen()
             else:
                 print("You have no pending orders.")
             cursor.close()
@@ -263,14 +275,22 @@ class Passenger(User):
             cursor = conn.cursor()
             cursor.execute("SELECT * FROM orders WHERE passenger_id = %s", (self.passenger_id,))
             orders = cursor.fetchall()
-            cursor.close()
-            conn.close()
+            
             if orders:
+                print("=========================================")
                 print("Your Bookings:")
                 for order in orders:
-                    print(f"Order ID: {order[0]}, Pickup: {order[2]}, Dropoff: {order[3]}, Distance: {order[4]}, Fare: {order[5]}, Status: {order[6]}")
-            else:
+                    cursor.execute("SELECT username FROM drivers WHERE id = %s", (order[2],))
+                    driver = cursor.fetchone()
+                    print(f"Order ID: {order[0]}, Driver: {driver[0]}, Pickup: {order[3]}, Dropoff: {order[4]}, Distance: {order[5]}, Fare: {order[6]} MMK, Status: {order[7]}")
                 print("You have no bookings.")
+
+            cursor.close()
+            conn.close()
+            
+            input("Press Enter to continue...")
+            clear_screen()
+
 
 #========================= Main Function ========================
         
