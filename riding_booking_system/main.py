@@ -151,7 +151,8 @@ class Driver(User):
         conn = connect_to_db()
         if conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT * FROM orders WHERE driver_id = %s and status = 'Pending'", (self.driver_id,))
+            self.set_driver_id()
+            cursor.execute("SELECT * FROM orders WHERE driver_id = %s", (self.driver_id,))
             orders = cursor.fetchall()
             cursor.close()
             conn.close()
@@ -256,14 +257,15 @@ class Passenger(User):
         conn = connect_to_db()
         if conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT * FROM orders WHERE passenger_username = %s AND status = 'Pending'", (self.username,))
+            self.get_passenger_id()
+            cursor.execute("SELECT * FROM orders WHERE passenger_id = %s AND status = 'Pending'", (self.passenger_id,))
             orders = cursor.fetchall()
             if orders:
                 print("Your Orders:")
                 for order in orders:
                     print(f"Order ID: {order[0]}, Pickup: {order[2]}, Dropoff: {order[3]}, Distance: {order[4]}, Driver: {order[5]}, Fare: {order[6]}, Status: {order[7]}")
                 order_id = input("Enter the Order ID of the ride you want to cancel: ")
-                cursor.execute("UPDATE orders SET status = 'Cancelled' WHERE id = %s AND passenger_username = %s", (order_id, self.username))
+                cursor.execute("UPDATE orders SET status = 'Cancelled' WHERE id = %s AND passenger_id = %s", (order_id, self.passenger_id))
                 conn.commit()
                 print("Ride canceled successfully!")
                 input("Press Enter to continue...")
@@ -287,8 +289,8 @@ class Passenger(User):
                     cursor.execute("SELECT username FROM drivers WHERE id = %s", (order[2],))
                     driver = cursor.fetchone()
                     print(f"Order ID: {order[0]}, Driver: {driver[0]}, Pickup: {order[3]}, Dropoff: {order[4]}, Distance: {order[5]}, Fare: {order[6]} MMK, Status: {order[7]}")
+            else:
                 print("You have no bookings.")
-
             cursor.close()
             conn.close()
             
@@ -330,6 +332,7 @@ def main():
             if user_role == "Driver":
                 driver = Driver(username, password)
                 while True:
+                    print("=========================================")
                     print("Welcome to the Driver Dashboard!")
                     print("1. Show Orders")
                     print("2. Update Order Status")
@@ -371,6 +374,7 @@ def main():
                 while True:
                     passenger = Passenger(username, password)
                     passenger.show_available_drivers()
+                    print("=========================================")
                     print("Welcome to the Passenger Dashboard!")
                     print("1. Book a Ride")
                     print("2. Cancel a Ride")
