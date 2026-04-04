@@ -128,6 +128,8 @@ class User:
             print("Failed to connect to the database. Please try again.")
             return None
 
+#========================= Driver Class ========================
+
 class Driver(User):
     def __init__(self, username, password):
         super().__init__(username, password, "Driver")
@@ -189,6 +191,8 @@ class Driver(User):
         else:
             print("Failed to connect to the database. Please try again.")
 
+#========================= Passenger Class ========================
+
 class Passenger(User):
     def __init__(self, username, password):
         super().__init__(username, password, "Passenger")
@@ -236,7 +240,7 @@ class Passenger(User):
             if driver:
                 per_km_fee = driver[0]
                 fare = self.fare_calculator(distance, per_km_fee)
-                cursor.execute("INSERT INTO orders (passenger_id, pickup_location, dropoff_location, distance, driver_id, fare, status) VALUES (%s, %s, %s, %s, %s, %s, 'Pending')", (passenger_id, pickup_location, dropoff_location, distance, driver_id, fare))
+                cursor.execute("INSERT INTO orders (passenger_id, pickup_location, dropoff_location, distance, driver_id, fare, status) VALUES (%s, %s, %s, %s, %s, %s, 'Pending')", (self.passenger_id, pickup_location, dropoff_location, distance, driver_id, fare))
                 conn.commit()
                 print("Ride booked successfully!")
                 input("Press Enter to continue...")
