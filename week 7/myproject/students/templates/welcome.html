@@ -1,130 +1,253 @@
 {% load static %}
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title> Student Management System</title>
-         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    </head>
-    <body>
-        <!-- Nav Bar-->
-         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-            <div class="container">
-                <a class="navbar-brand fw-bold" href="{% url 'welcome'%}">Student MS</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-target="#navbarNav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'add_student'%}">Add Student</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'dashboard'%}">Dashboard</a>
-                            </li>
-                        </ul>
-                    </div>
-            </div>
-         </nav>
-        <section class="hero-section container py-5 px-4 d-flex align-items-center flex-wrap rounded">
-        <div class="hero-text col-md-6 pe-md-5 mb-4 mb-md-0">
-            <h1>Welcome to Student Management System</h1>
-            <p>Effortlessly manage students, courses, teachers, and enrollments with a modern and professional dashboard. Organize everything efficiently in one place for seamless management.</p>
-            <a href="{% url 'dashboard' %}" class="cta-btn">Go to Dashboard</a>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student Management System</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #ffffff;
+      }
+      .hero-section {
+        padding: 20px;
+        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        color: white;
+        border-radius: 10px;
+        margin-top: 30px;
+      }
+      .hero-section h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+      }
+      .hero-section p {
+        font-size: 1.2rem;
+        margin-top: 20px;
+      }
+      .cta-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #ffffff;
+        color: rgb(122, 0, 0);
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+      .cta-btn:hover {
+        background-color: rgb(122, 0, 0);
+        color: #ffffff;
+        transform: translateY(-2px);
+      }
+      .hero-image img {
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .features-section {
+        margin-top: 50px;
+      }
+      .feature-card {
+        border: none;
+        border-radius: 10px;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      }
+      .feature-card i {
+        font-size: 2.5rem;
+        color: rgb(122, 0, 0);
+      }
+      footer {
+        background-color: #f8f9fa;
+        padding: 20px 0;
+        margin-top: 50px;
+      }
+      footer a {
+        color: rgb(122, 0, 0);
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+      .mt-5 .col-md-4 {
+        float: left;
+        width: 32%;
+        margin-right: 2%;
+        box-sizing: border-box;
+      }
+      .mt-5 .col-md-4:last-child {
+        margin-right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Nav Bar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="{% url 'welcome'%}">Student MS</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'add_student'%}">Add Student</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'dashboard'%}">Dashboard</a>
+            </li>
+          </ul>
         </div>
-        <div class="hero-image col-md-6 text-center">
-            <img src="{% static 'images/student.jpg' %}" class="img-fluid" alt="Student Hero">
-        </div>
+      </div>
+    </nav>
+    <section
+      class="hero-section container py-5 px-4 d-flex align-items-center flex-wrap rounded"
+    >
+      <div class="hero-text col-md-6 pe-md-5 mb-4 mb-md-0">
+        <h1>Welcome to Student Management System</h1>
+        <p>
+          Effortlessly manage students, courses, teachers, and enrollments with
+          a modern and professional dashboard. Organize everything efficiently
+          in one place for seamless management.
+        </p>
+        <a href="{% url 'dashboard' %}" class="cta-btn">Go to Dashboard</a>
+      </div>
+      <div class="hero-image col-md-6 text-center">
+        <img
+          src="{% static 'images/student.jpg' %}"
+          class="img-fluid"
+          alt="Student Hero"
+        />
+      </div>
     </section>
     <!-- Features Section -->
     <section class="features-section container">
-        <div class="row text-center g-4">
-            <div class="col-md-3">
-                <div class="card feature-card p-4 shadow-sm">
-                    <i class="bi bi-person-lines-fill"></i>
-                    <h5>Students</h5>
-                    <p>Track all student information and attendance records easily.</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card feature-card p-4 shadow-sm">
-                    <i class="bi bi-journal-bookmark-fill"></i>
-                    <h5>Courses</h5>
-                    <p>Create and manage courses with complete details and schedules.</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card feature-card p-4 shadow-sm">
-                    <i class="bi bi-person-badge-fill"></i>
-                    <h5>Teachers</h5>
-                    <p>Manage teacher profiles, courses, and assignments efficiently.</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card feature-card p-4 shadow-sm">
-                    <i class="bi bi-card-checklist"></i>
-                    <h5>Enrollment</h5>
-                    <p>Handle student course enrollments and track progress easily.</p>
-                </div>
-            </div>
+      <div class="row text-center g-4">
+        <div class="col-md-3">
+          <div class="card feature-card p-4 shadow-sm">
+            <i class="bi bi-person-lines-fill"></i>
+            <h5>Students</h5>
+            <p>Track all student information and attendance records easily.</p>
+          </div>
         </div>
+        <div class="col-md-3">
+          <div class="card feature-card p-4 shadow-sm">
+            <i class="bi bi-journal-bookmark-fill"></i>
+            <h5>Courses</h5>
+            <p>
+              Create and manage courses with complete details and schedules.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card feature-card p-4 shadow-sm">
+            <i class="bi bi-person-badge-fill"></i>
+            <h5>Teachers</h5>
+            <p>
+              Manage teacher profiles, courses, and assignments efficiently.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card feature-card p-4 shadow-sm">
+            <i class="bi bi-card-checklist"></i>
+            <h5>Enrollment</h5>
+            <p>Handle student course enrollments and track progress easily.</p>
+          </div>
+        </div>
+      </div>
     </section>
     <!-- Education Blog Section-->
     <section class="container mt-5">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold">Education Insights</h2>
-            <p class="text_muted">Learn about the history of education, famous educators, and Myanmar's education background.</p>    
+      <div class="text-center mb-5">
+        <h2 class="fw-bold">Education Insights</h2>
+        <p class="text_muted">
+          Learn about the history of education, famous educators, and Myanmar's
+          education background.
+        </p>
+      </div>
+      <!--Education Background-->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-150 border-0">
+          <img
+            src="{%  static 'images/history_education.jpg' %}"
+            class="card-img-top"
+            alt="History of Education"
+          />
+          <div class="card-body">
+            <h5 class="card-title">History of Education</h5>
+            <p class="card-text">
+              Education has evolved from ancient oral traditions to modern
+              digital learning. Early civilizations like Greece, China, and
+              India built the foundations of formal education systems.
+            </p>
+            <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+          </div>
         </div>
-        <!--Education Background-->
-        <div class="col-md-4">
-            <div class="card shadow-sm h-150 border-0">
-                <img src="{%  static 'images/history_education.jpg' %}" class="card-img-top" alt="History of Education">
-                <div class="card-body">
-                    <h5 class="card-title"> History of Education</h5>
-                    <p class="card-text">
-                        Education has evolved from ancient oral traditions to modern digital learning. 
-                        Early civilizations like Greece, China, and India built the foundations of formal education systems.
-                    </p>
-                    <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
-                </div>
-            </div>
+      </div>
+      <!-- Famous Educators -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-150 border-0">
+          <img
+            src="{% static 'images/famouse_educators.webp' %}"
+            class="card-img-top"
+            alt="Famous Educators"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Famous Educators</h5>
+            <p class="card-text">
+              Influential figures like Confucius, Maria Montessori, and John
+              Dewey shaped modern education systems and teaching philosophies
+              used worldwide today.
+            </p>
+            <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+          </div>
         </div>
-        <!-- Famous Educators -->
-        <div class="col-md-4">
-            <div class="card shadow-sm h-150 border-0">
-                <img src="{% static 'images/famouse_educators.webp' %}" class="card-img-top" alt="Famous Educators">
-                <div class="card-body">
-                    <h5 class="card-title">Famous Educators</h5>
-                    <p class="card-text">
-                        Influential figures like Confucius, Maria Montessori, and John Dewey shaped modern education systems 
-                        and teaching philosophies used worldwide today.
-                    </p>
-                    <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
-                </div>
-            </div>
+      </div>
+      <!-- Myanmar Education -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-70 border-0">
+          <img
+            src="{% static 'images/myanmar_education.png' %}"
+            class="card-img-top"
+            alt="Myanmar Education"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Myanmar Education</h5>
+            <p class="card-text">
+              Myanmar’s education system started with monastic schools where
+              monks taught literacy and moral values. Today the system includes
+              primary, secondary, and university education.
+            </p>
+            <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+          </div>
         </div>
-         <!-- Myanmar Education -->
-        <div class="col-md-4">
-            <div class="card shadow-sm h-70 border-0">
-                <img src="{% static 'images/myanmar_education.png' %}" class="card-img-top" alt="Myanmar Education">
-                <div class="card-body">
-                    <h5 class="card-title">Myanmar Education</h5>
-                    <p class="card-text">
-                        Myanmar’s education system started with monastic schools where monks taught literacy and moral values. 
-                        Today the system includes primary, secondary, and university education.
-                    </p>
-                    <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
-                </div>
-            </div>
-        </div>
-    </div>
+      </div>
     </section>
     <!--Footer-->
     <footer class="text-center">
-        <div class="container">
-            <p>&copy; 2026 Student Management System. All rights reversed.</p>
-            <p>Contact: <a href="mailto:admin@students.com">admin@studentms.com</a></p>
-        </div>
+      <div class="container">
+        <p>&copy; 2026 Student Management System. All rights reversed.</p>
+        <p>
+          Contact: <a href="mailto:admin@students.com">admin@studentms.com</a>
+        </p>
+      </div>
     </footer>
-    </body>
+  </body>
 </html>
