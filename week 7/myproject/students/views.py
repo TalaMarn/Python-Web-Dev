@@ -20,9 +20,15 @@ def student_list(request):
 
 def dashboard(request):
     total_students = Student.objects.count()
+    male_students = Student.objects.filter(gender='Male').count()
+    female_students = Student.objects.filter(gender='Female').count()
+    recent_students = Student.objects.all().order_by('-id')[:5]
 
     context = {
         'total_students': total_students,
+        'male_students' : male_students,
+        'female_students': female_students,
+        'recent_students': recent_students,
     }
     return render(request, 'dashboard.html', context)
 
