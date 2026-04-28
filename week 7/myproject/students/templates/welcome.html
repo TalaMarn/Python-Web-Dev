@@ -95,22 +95,14 @@
     <!-- Nav Bar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="{% url 'welcome'%}">Student MS</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand fw-bold" href="{% url 'welcome' %}">StudentMS</a>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'add_student'%}">Add Student</a>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'add_student' %}">Add Student</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'dashboard'%}">Dashboard</a>
+              <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
             </li>
           </ul>
         </div>
@@ -127,6 +119,7 @@
           in one place for seamless management.
         </p>
         <a href="{% url 'dashboard' %}" class="cta-btn">Go to Dashboard</a>
+        <a href="{% url 'school_info' %}" class="cta-btn">Learn More</a>
       </div>
       <div class="hero-image col-md-6 text-center">
         <img
@@ -174,74 +167,75 @@
       </div>
     </section>
     <!-- Education Blog Section-->
-    <section class="container mt-5">
-      <div class="text-center mb-5">
-        <h2 class="fw-bold">Education Insights</h2>
-        <p class="text_muted">
-          Learn about the history of education, famous educators, and Myanmar's
-          education background.
-        </p>
-      </div>
-      <!--Education Background-->
-      <div class="col-md-4">
-        <div class="card shadow-sm h-150 border-0">
-          <img
-            src="{%  static 'images/history_education.jpg' %}"
-            class="card-img-top"
-            alt="History of Education"
-          />
-          <div class="card-body">
-            <h5 class="card-title">History of Education</h5>
-            <p class="card-text">
-              Education has evolved from ancient oral traditions to modern
-              digital learning. Early civilizations like Greece, China, and
-              India built the foundations of formal education systems.
-            </p>
-            <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+    <div class="text-center mb-5 mt-5">
+      <h2 class="fw-bold">Education Insights</h2>
+      <p class="text_muted">
+        Learn about the history of education, famous educators, and Myanmar's
+        education background.
+      </p>
+    </div>
+    <div class="container">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card h-100">
+            <img
+              src="{%  static 'images/history_education.jpg' %}"
+              class="card-img-top"
+              alt="History of Education"
+            />
+            <div class="card-body">
+              <h5 class="card-title">History of Education</h5>
+              <p class="card-text">
+                Education has evolved from ancient oral traditions to modern
+                digital learning. Early civilizations like Greece, China, and
+                India built the foundations of formal education systems.
+              </p>
+              <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- Famous Educators -->
-      <div class="col-md-4">
-        <div class="card shadow-sm h-150 border-0">
-          <img
-            src="{% static 'images/famouse_educators.webp' %}"
-            class="card-img-top"
-            alt="Famous Educators"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Famous Educators</h5>
-            <p class="card-text">
-              Influential figures like Confucius, Maria Montessori, and John
-              Dewey shaped modern education systems and teaching philosophies
-              used worldwide today.
-            </p>
-            <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+        <div class="col">
+          <div class="card h-100">
+            <img
+              src="{% static 'images/famouse_educators.webp' %}"
+              class="card-img-top"
+              alt="Famous Educators"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Famous Educators</h5>
+              <p class="card-text">
+                Influential figures like Confucius, Maria Montessori, and John
+                Dewey shaped modern education systems and teaching philosophies
+                used worldwide today.
+              </p>
+              <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- Myanmar Education -->
-      <div class="col-md-4">
-        <div class="card shadow-sm h-70 border-0">
-          <img
-            src="{% static 'images/myanmar_education.png' %}"
-            class="card-img-top"
-            alt="Myanmar Education"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Myanmar Education</h5>
-            <p class="card-text">
-              Myanmar’s education system started with monastic schools where
-              monks taught literacy and moral values. Today the system includes
-              primary, secondary, and university education.
-            </p>
-            <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+        <div class="col">
+          <div class="card h-100">
+            <img
+              src="{% static 'images/myanmar_education.png' %}"
+              class="card-img-top"
+              alt="Myanmar Education"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Myanmar's Education Background</h5>
+              <p class="card-text">
+                Myanmar’s education system started with monastic schools where
+                monks taught literacy and moral values. Today the system
+                includes primary, secondary, and university education.
+              </p>
+              <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+            </div>
           </div>
         </div>
+        
+        </div>
       </div>
-    </section>
+    </div>
     <!--Footer-->
-    <footer class="text-center">
+    <footer class="text-center mt-5">
       <div class="container">
         <p>&copy; 2026 Student Management System. All rights reversed.</p>
         <p>
