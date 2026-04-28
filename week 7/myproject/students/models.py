@@ -11,6 +11,7 @@ class Student(models.Model):
     email = models.EmailField()
     course = models.CharField(max_length=100)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='Male')
+    photo = models.ImageField(upload_to='student_photos/', null=True, blank=True)
 
     def __str__(self):
         return self.name

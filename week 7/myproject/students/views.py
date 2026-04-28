@@ -12,11 +12,12 @@ def student_list(request):
         students = Student.objects.filter(name__icontains=query)
     else:
         students = Student.objects.all()
-
+    
     paginator = Paginator(students, 3)
     page_number = request.GET.get('page')
-    students = paginator.get_page(page_number)
-    return render(request, 'student.html', {'students': students})
+
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'student.html',{'students':page_obj})
 
 def dashboard(request):
     total_students = Student.objects.count()
@@ -42,3 +43,17 @@ def add_student(request):
         form = StudentForm()
 
     return render(request, 'add_student.html', {'form': form})
+
+
+def edit_student(request, id):
+    student = Student.objects.get(id=id)
+    form = StudentForm(request.POST or None, request.FILES or None, instance=student)
+    if form.is_valid():
+        form.save()
+        return redirect('student_list')
+    return render(request,'add_student.html',{'form':form})
+
+def delete_student(request, id):
+    student = Student.objects.get(id=id)
+    student.delete()
+    return redirect('student_list')
