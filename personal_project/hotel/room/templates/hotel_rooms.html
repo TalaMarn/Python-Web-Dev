@@ -1,0 +1,17 @@
+<h1>Room List</h1>
+
+<table border="1">
+  <tr>
+    <th>Room No</th>
+    <th>Room Type</th>
+    <th>Room Price</th>
+  </tr>
+
+  {% for room in rooms %}
+  <tr>
+    <td>{{ room.roomNo }}</td>
+    <td>{{ room.roomType }}</td>
+    <td>{{ room.price }}</td>
+  </tr>
+  {% endfor %}
+</table>
