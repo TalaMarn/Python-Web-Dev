@@ -1,5 +1,7 @@
 from django.db import models
 
+from django.contrib.auth.models import User
+
 # Create your models here.
 class Room(models.Model):
     ROOM_TYPE = [
@@ -11,3 +13,16 @@ class Room(models.Model):
     roomType = models.CharField(max_length=10, choices=ROOM_TYPE, default='Single')
     price = models.FloatField()
     roomPic = models.ImageField(upload_to='Room_Img/', null=True, blank=True)
+
+
+class Profile(models.Model):
+    Role_Choices = [
+        ('Customer', 'Customer'),
+        ('Staff', 'Staff'),
+    ]
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    role = models.CharField(max_length=10, choices=Role_Choices, default='Customer')
+
+    def __str__(self):
+        return self.user.username

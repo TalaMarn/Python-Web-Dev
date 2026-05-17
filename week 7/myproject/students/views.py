@@ -1,9 +1,65 @@
 from django.shortcuts import redirect, render
-from .models import Student
+from django.contrib.auth import authenticate, login, logout
+from .models import Student, Profile
 from django.core.paginator import Paginator
-from .forms import StudentForm
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from .forms import StudentForm,LoginForm, RegisterForm
+
+# Login
+
+def login_view(request):
+    form = LoginForm()
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = authenticate(
+                request,
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password'],
+            )
+            if user:
+                login(request, user)
+                if user.is_staff:
+                    return redirect('dashboard')
+                profile = Profile.objects.filter(user=user).first()
+                if profile and profile.role == 'Teacher':
+                    return redirect('teacher_dashboard')
+                return redirect('student_dashboard')
+    return render(request, 'Login.html', {'form': form})
+
+# Register
+def register_view(request):
+    form = RegisterForm()
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = User.objects.create_user(
+                username=form.cleaned_data['username'],
+                email=form.cleaned_data['email'],
+                password=form.cleaned_data['password'],
+            )
+
+            Profile.objects.create(
+                user=user,
+                role=form.cleaned_data['role']
+            )
+            return redirect('login')
+    return render(request, 'register.html', {'form': form})
+
 
 # Create your views here.
+# Student Dashboard
+@login_required
+def student_dashboard(request):
+    return render(request, 'student_dashboard.html')
+
+# Teacher Dashboard
+@login_required
+def teacher_dashboard(request):
+    return render(request, 'teacher_dashboard.html')
+
+
 def welcome(request):
     return render(request, 'welcome.html')
 def student_list(request):
@@ -60,3 +116,7 @@ def delete_student(request, id):
 
 def school_info(request):
     return render(request, 'school_info.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')

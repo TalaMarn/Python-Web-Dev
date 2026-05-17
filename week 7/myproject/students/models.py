@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Student(models.Model):
@@ -15,3 +16,15 @@ class Student(models.Model):
 
     def __str__(self):
         return self.name
+
+class Profile(models.Model):
+    Role_Choices = [
+        ('Student', 'Student'),
+        ('Teacher', 'Teacher'),
+    ]
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    role = models.CharField(max_length=10, choices=Role_Choices, default='Student')
+
+    def __str__(self):
+        return self.user.username

@@ -119,22 +119,13 @@
               >
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              style="background-color: #cacaca"
-            />
-            <button
-              class="btn btn-outline"
-              type="submit"
-              style="background-color: #e6b31e; color: #161617"
-            >
-              Search
-            </button>
-          </form>
+          <a class="btn btn-warning" href="{% url 'login' %}">Login</a>
+          <a
+            class="btn btn-outline-warning m-1 mb-0"
+            href="{% url 'register' %}"
+          >
+            Register
+          </a>
         </div>
       </div>
     </nav>
